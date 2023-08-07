@@ -1,0 +1,77 @@
+<div [ngStyle]="{ 'padding-top': '7.5rem', 'background-color': '#29539b' }">
+
+    <div class='collection'>
+        <h1 class='heading text-center text-danger'>Collections</h1>
+        <owl-carousel-o [options]="customOptions">
+
+            <ng-container *ngFor="let product of products">
+                <ng-template carouselSlide id="product.id">
+                    <!-- <img [src]="product.imageLink" [alt]="slide.name" [title]="slide.name"> -->
+                    <div class="card align-items-center mx-2"
+                        [ngStyle]="{ 'backgorund-color': 'transparent', 'border': 'none' }">
+                        <img [src]="!product.imageLink ? product.imageLink : 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'"
+                            class="card-img-top" alt="books" [ngStyle]="{ 'width': '15rem', 'padding-top': '10'}" />
+                        <div class="card-body my-3">
+                            <h3 class="card-title" [ngStyle]="{ 'font-size': '20' }">TITLE: <span
+                                    class="text-primary">{{ product.title }}</span></h3><br />
+                            <h4 class="card-title" [ngStyle]="{ 'font-size': '15' }">AUTHOR: <span
+                                    class="text-danger">{{ product.author }}</span></h4><br />
+                            <div class='d-flex justify-content-between align-items-center'>
+                                <button (click)="getInfo(product.link)" class='btn btn-primary'><fa-icon
+                                        [icon]="faReadme"></fa-icon></button>
+                                <button (click)="addItems(product)" type="button" class='btn btn-primary'>Add to Cart</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-container>
+
+        </owl-carousel-o>
+
+        <div class="container py-4">
+            <h2 class="heding text-secondary text-center">Feature Books</h2>
+            <div class="d-flex justify-content-around align-items-center">
+                <button type='button' class='btn btn-primary' (click)="allBooks()"
+                    [ngStyle]="{ 'background-color': 'transparent' , 'border': 'none' }">ALL
+                    BOOKS</button>
+                <button type='button' (click)="filter('Sanskrit')" class='btn btn-primary'
+                    [ngStyle]="{ 'background-color': 'transparent' , 'border': 'none' }">SANSKRIT</button>
+                <button type='button' (click)="filter('English')" class='btn btn-primary'
+                    [ngStyle]="{ 'background-color': 'transparent' , 'border': 'none' }">ENGLISH</button>
+                <button type='button' (click)="filter('German')" class='btn btn-primary'
+                    [ngStyle]="{ 'background-color': 'transparent' , 'border': 'none' }">GERMAN</button>
+                <button type='button' (click)="filter('Italian')" class='btn btn-primary'
+                    [ngStyle]="{ 'background-color': 'transparent' , 'border': 'none' }">ITALIAN</button>
+            </div>
+
+            <div class="container">
+
+                <div class='row' *ngFor="let product of filterProducts">
+                    <div className='col-6 g-4'>
+                    <div class="card " [ngStyle]="{'width': '25rem'}">
+                        <img [src]="!'../../../assets/product.imageLink' ? '../../../assets/product.imageLink' : 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'"
+                        class="card-img-top" alt="books" [ngStyle]="{ 'width': '100%', 'padding-top': '10'}" />
+                    <div class="card-body my-3">
+                        <h3 class="card-title" [ngStyle]="{ 'font-size': '20' }">TITLE: <span
+                            class="text-primary">{{
+                                product.title }}</span></h3><br />
+                                <h4 class="card-title" [ngStyle]="{ 'font-size': '15' }">AUTHOR: <span
+                                    class="text-danger">{{
+                                        product.author }}</span></h4><br />
+                                        <div class='d-flex justify-content-between align-items-center'>
+                                            <button (click)="getInfo(product.link)" class='btn btn-primary'><fa-icon
+                                                [icon]="faReadme"></fa-icon></button>
+                                                <button (click)="addItems(product)"  type="button" class='btn btn-primary'>Add to Cart</button>
+                                            </div>
+                                            <!-- {{product.imageLink}} -->
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</div>

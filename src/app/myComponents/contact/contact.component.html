@@ -1,0 +1,42 @@
+<div [ngStyle]="{ 'background-color': '#c9e6ff'}">
+    <div class="containers" [ngStyle]="{ 'padding': '100', 'margin-top':'6rem' }">
+        <div class="wrapper animated bounceInLeft">
+            <div class="company-info" [ngStyle]="{ 'font-size': '1.8rem' }">
+                <h3>Book_store_online</h3>
+                <ul>
+                    <li><i class="fa fa-road"></i> 44 Something st</li>
+                    <li><i class="fa fa-phone"></i> (555) 555-5555</li>
+                    <li><i class="fa fa-envelope"></i> bookly@company.com</li>
+                </ul>
+            </div>
+            <div class="contact" [ngStyle]="{ 'font-size': '1.5rem' }">
+                <h3>Email Us</h3>
+                <form >
+                    <p>
+                        <label>Name</label>
+                        <input type="text" name="name" id="name" />
+                    </p>
+                    <p>
+                        <label>Company</label>
+                        <input type="text" name="company" id="company" />
+                    </p>
+                    <p>
+                        <label>Email Address</label>
+                        <input type="email" name="email" id="email" />
+                    </p>
+                    <p>
+                        <label>Phone Number</label>
+                        <input type="text" name="phone" id="phone" />
+                    </p>
+                    <p class="full">
+                        <label>Message</label>
+                        <textarea name="message" id="message" rows="5"></textarea>
+                    </p>
+                    <p class="full">
+                        <button type="submit">Submit</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

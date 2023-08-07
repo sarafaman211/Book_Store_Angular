@@ -1,0 +1,19 @@
+<div class="form-container">
+    <form (ngSubmit)="onSubmit()">
+        <h3 class="heading">Welcome to <span class="text-primary">LogIn</span></h3>
+        <div class="mb-3">
+            <input type="email" class="form-control box" id="email" aria-describedby="emailHelp" name="email" [(ngModel)]="email"
+                placeholder='Enter your email' />
+        </div>
+        <div class="mb-3">
+            <input type="password" class="form-control box" id="password" name="password" [(ngModel)]="password"
+                placeholder='Enter your password' />
+        </div>
+        <div [ngStyle]="{ 'font-size': '1.5rem', 'color': '#333' }" id="emailHelp" class="form-text">We'll never share
+            your email with anyone else.</div>
+        <button [ngStyle]="{ 'width': '100%', 'padding': '0.8rem' }" type="submit" class="btn btn-primary">Submit</button>
+        <p>Don't have an account? <a routerLink="/signUp"
+                [ngStyle]="{ 'text-decoration': 'none', 'color': '#093145' }">SignUp</a></p>
+    </form>
+
+</div>

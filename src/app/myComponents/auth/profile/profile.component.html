@@ -1,0 +1,31 @@
+<div [ngStyle]="{'padding': '4rem'}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
+            </div>
+            <div class="modal-body">
+
+                <form>
+                    <div class="mb-3">
+                        <label [ngStyle]="{ 'font-size': '2.5rem',' font-weight': '500' }" htmlFor='id'>User Id</label>
+                        <input [ngStyle]="{ 'padding': '15px', 'border-bottom': '2px solid black' , 'border-right': 'transparent', 'border-left': 'transparent', 'border-top': 'transparent', 'font-size': '1.5rem'  }" type="text" class="form-control" id="id" aria-describedby="emailHelp" placeholder={{userData._id}} [disabled]="true"/>
+                    </div>
+                    <div class="mb-3">
+                        <label [ngStyle]="{ 'font-size': '2.5rem',' font-weight': '500' }" htmlFor='name'>User Name</label>
+                        <input  [ngStyle]="{ 'padding': '15px', 'border-bottom': '2px solid black' , 'border-right': 'transparent', 'border-left': 'transparent', 'border-top': 'transparent', 'font-size': '2rem'  }" type="text" class="form-control box" id="name" placeholder={{userData.name}} [disabled]="true" />
+                    </div>
+                    <div class="mb-3">
+                        <label [ngStyle]="{ 'font-size': '2.5rem',' font-weight': '500' }" htmlFor='email'>User Email</label>
+                        <input [ngStyle]="{ 'padding': '15px', 'border-bottom': '2px solid black' , 'border-right': 'transparent', 'border-left': 'transparent', 'border-top': 'transparent', 'font-size': '2rem'  }" type="text" class="form-control box" id="email" placeholder={{userData.email}} [disabled]="true" />
+                    </div>
+                </form>
+
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <button type="button" class="btn btn-secondary" (click)="closeBtn()">Close</button>
+                <a routerLink="/cart" type="button" class="btn btn-primary">Cart</a>
+            </div>
+        </div>
+    </div>
+</div>

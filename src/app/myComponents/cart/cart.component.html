@@ -1,0 +1,50 @@
+<div [ngStyle]="{ 'height': '100%', 'background': 'linear-gradient(#e66465, #9198e5)', 'padding-top': '7.5rem'}">
+    <h1 class="heading text-center">Cart List</h1>
+    <!-- Create a condition for login if token is their then login will show other wise ng-template will show -->
+    <div *ngIf="isLoggedIn(); else loginMessage">
+
+        <div class="container" *ngIf="isLoggedIn(); else noItems">
+            <div class='row' *ngFor="let item of items">
+                <div class='col-6 g-4'>
+                    <div class="card" [ngStyle]="{'width': '50rem', 'margin-left': '21rem'}">
+                        <div class="card-body" [ngStyle]="{ 'font-size': '1.3rem' }">
+                            <h5 class="card-title" [ngStyle]="{ 'font-size': '1.5rem' }">PRODUCT NAME: <span class="text-primary"> {{ item.title }} </span> </h5>
+                            <p class="card-text">AUTHOR: <span class="text-secondary">{{item.author}}</span></p>
+                            <strong>PRICE: <span class="text-danger">&#8377; </span> {{item.amount}}</strong>
+                            <div class='d-flex justify-content-between align-items-center'>
+                                <strong>PUBLISH: <span class="text-danger">{{ getAbsoluteValue(item.year) }}</span> </strong>
+                                <button (click)="deleteBtn(item._id)" type='button'><fa-icon class="text-danger" [icon]="faTrashAlt"></fa-icon></button>
+                                <button type='button'><a routerLink="/thankYou"><fa-icon [ngStyle]="{ 'text-decoration': 'none' }" [icon]="faMoneyBill"></fa-icon></a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <ng-template #noItems>
+            <p>No items found. Please log in to view items.</p>
+          </ng-template>
+
+
+        <div [ngStyle]="{ 'padding': '2rem', 'text-align': 'center' }">
+            <div class='d-flex justify-content-center align-items-center flex-column text-center pt-5'>
+                <h3 class='heading mx-3'> Your Balance </h3>
+                <h1>&#x20B9; <span class="text-primary">{{calculateAmount()}}</span></h1>
+                <a routerLink="/thankYou"><button class='btn btn-primary mt-3'
+                        [ngStyle]="{ 'font-size': '25' }">Buy</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #loginMessage>
+        <div class='row container'>
+            <h2 [ngStyle]="{'text-align': 'center', 'padding-left': '24rem'}" class='heading  text-danger'> You must
+                login first to add some items in your cart </h2>
+        </div>
+        <a [ngStyle]="{ 'margin-left': '52rem'}" routerLink="/login" class="btn btn-primary" type="button">Go To
+            Login Page</a>
+    </ng-template>
+
+</div>

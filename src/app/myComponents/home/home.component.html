@@ -1,0 +1,122 @@
+<div [ngStyle]="{ 'padding-top': '80px' }">
+
+    <section class="home ">
+
+        <div class="row">
+
+            <div class="content">
+                <h3>upto 75% off</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam deserunt nostrum accusamus. Nam alias
+                    sit necessitatibus, aliquid ex minima at!</p>
+                <a routerLink="/collection" class="btn btn-primary">shop now</a>
+            </div>
+
+            <div class='books-slider'>
+                <img src="../../../assets/book-banner.jpg" class='w-50' alt="book image" />
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="icons-container d-flex justify-content-around align-items-center">
+
+        <div class="icons">
+            <fa-icon [icon]="faShippingFast"></fa-icon>
+            <div class="content">
+                <h3>free shipping</h3>
+                <p>order over $100</p>
+            </div>
+        </div>
+
+        <div class="icons">
+            <fa-icon [icon]="faLock"></fa-icon>
+            <div class="content">
+                <h3>secure payment</h3>
+                <p>100 secure payment</p>
+            </div>
+        </div>
+
+        <div class="icons">
+            <fa-icon [icon]="faRedoAlt"></fa-icon>
+            <div class="content">
+                <h3>easy returns</h3>
+                <p>10 days returns</p>
+            </div>
+        </div>
+
+        <div class="icons">
+            <fa-icon [icon]="faHeadset"></fa-icon>
+            <div class="content">
+                <h3>24/7 support</h3>
+                <p>call us anytime</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- {/* carousel */} -->
+    <div >
+      <h2 class="heading text-center pt-3">New Arrival</h2>
+      <!-- <p *ngFor="let product of products">{{product.title}}</p> -->
+
+      <owl-carousel-o [options]="customOptions">
+      
+        <ng-container *ngFor="let product of products">
+          <ng-template carouselSlide id="product.id">
+            <!-- <img [src]="product.imageLink" [alt]="slide.name" [title]="slide.name"> -->
+            <div class="card align-items-center mx-2" [ngStyle]="{ 'backgorund-color': 'transparent', 'border': 'none' }" >
+                <img [src]="!product.imageLink ? product.imageLink : 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'" class="card-img-top" alt="books" [ngStyle]="{ 'width': '15rem', 'padding-top': '10'}" />
+                <div class="card-body my-3">
+                    <h3 class="card-title" [ngStyle]="{ 'font-size': '20' }">TITLE: <span class="text-primary">{{ product.title }}</span></h3><br />
+                    <h4 class="card-title" [ngStyle]="{ 'font-size': '15' }">AUTHOR: <span class="text-danger">{{ product.author }}</span></h4><br />
+                    <div class='d-flex justify-content-between align-items-center'>
+                    <button (click)="getInfo(product.link)"  class='btn btn-primary' ><fa-icon [icon]="faReadme"></fa-icon></button>
+                    <button (click)="addItems()" type="button" class='btn btn-primary'>Add to Cart</button>
+                    </div>
+
+                </div>
+            </div>
+          </ng-template>
+        </ng-container>
+    
+      </owl-carousel-o>
+    
+      
+    </div>
+
+
+    <!-- {/* subscriber */} -->
+    <section class="newsletter">
+
+        <form>
+            <h3>subscribe for latest updates</h3>
+            <input type="email" name="" placeholder="enter your email" class="box" />
+            <input type="submit" value="subscribe" class="btn btn-primary" />
+        </form>
+
+    </section>
+
+    <!-- {/* deal */} -->
+    <div class="deal d-flex justify-content-around align-items-center pt-4 m-3">
+
+        <div class="content">
+            <h3>deal of the day</h3>
+            <h1>upto 50% off</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde perspiciatis in atque dolore tempora
+                quaerat at fuga dolorum natus velit.</p>
+            <a routerLink="/newArrival" class="btn btn-secondary">shop now</a>
+        </div>
+
+        <div class="image">
+            <img src="../../../assets/deal-img.jpg" alt="" />
+        </div>
+
+    </div>
+
+    <!-- {/* clients */} -->
+    <section class="reviews">
+        <h1 class="title text-center">CLIENT'S REVIEWS</h1>
+        <app-carousel></app-carousel>
+    </section>
+</div>
