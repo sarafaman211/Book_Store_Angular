@@ -1,7 +1,7 @@
 import { Items } from "./items.interface"
 
 export interface Products{
-    id?:string
+    _id?:string
     author: string
     country: string
     imageLink: string
@@ -14,6 +14,11 @@ export interface Products{
 
 export interface ApiResponse {
     products: Products[];
+
+  }
+
+  export interface Response {
+    products: Products;
 
   }
 

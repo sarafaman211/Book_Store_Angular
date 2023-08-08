@@ -10,10 +10,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./collection.component.css']
 })
 export class CollectionComponent implements OnInit {
+  // create an instance to iterate the data in the html component
   products: Products[] = []
   filterProducts: Products[] =[]
+  productDetails: any = [] 
+
+  // fontawesome icons
   faReadme = faReadme
 
+  // owl carousel custom options 
   customOptions: any = {
     loop: true,
     mouseDrag: true,
@@ -44,22 +49,25 @@ export class CollectionComponent implements OnInit {
 
   constructor(private apiService: ApisService, private router: Router){}
 
+  // Getting all the products
   ngOnInit(): void {
     this.apiService.getProducts().subscribe(data => this.products = data)
   }
 
+  // filtering function for filter out the language and getting all the books
   filter(language:string){
    const product = this.apiService.getProducts().subscribe(response => {
     this.filterProducts = response.filter(response => response.language === language)
    })
 
-   return product
+   return product;
   }
 
   allBooks(){
     return this.apiService.getProducts().subscribe(data => this.filterProducts = data)
   }
 
+  // AddProducts in the database and show in the html side to
   addItems(product: Products){
   // console.log("product", product)
   return this.apiService.addProducts(product).subscribe(response =>{
@@ -71,10 +79,10 @@ export class CollectionComponent implements OnInit {
   })
  }
 
+//  getInfo about the books functions
   getInfo(link: string): void {
     openLink(link);
   }
-
 }
 
 function openLink(link: string): void {

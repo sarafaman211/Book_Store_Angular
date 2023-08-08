@@ -72,7 +72,7 @@
                     <h4 class="card-title" [ngStyle]="{ 'font-size': '15' }">AUTHOR: <span class="text-danger">{{ product.author }}</span></h4><br />
                     <div class='d-flex justify-content-between align-items-center'>
                     <button (click)="getInfo(product.link)"  class='btn btn-primary' ><fa-icon [icon]="faReadme"></fa-icon></button>
-                    <button (click)="addItems()" type="button" class='btn btn-primary'>Add to Cart</button>
+                    <a [routerLink]="'/product-details/' + product._id" class='btn btn-primary'>View Product</a>
                     </div>
 
                 </div>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ChangeDetectionStrategy } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +20,7 @@ import { FooterComponent } from './myComponents/footer/footer.component';
 import { CarouselComponent } from './myComponents/carousel/carousel.component';
 import { ProfileComponent } from './myComponents/auth/profile/profile.component';
 import { CartComponent } from './myComponents/cart/cart.component';
+import { ProductDetailsComponent } from './myComponents/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CartComponent } from './myComponents/cart/cart.component';
     FooterComponent,
     CarouselComponent,
     ProfileComponent,
-    CartComponent
+    CartComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,7 @@ import { CartComponent } from './myComponents/cart/cart.component';
     FormsModule,
     MatDialogModule
     ],
-  providers: [],
+  providers: [{ provide: ChangeDetectionStrategy,useValue: ChangeDetectionStrategy.OnPush  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

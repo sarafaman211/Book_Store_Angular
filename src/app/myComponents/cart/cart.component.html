@@ -4,7 +4,7 @@
     <div *ngIf="isLoggedIn(); else loginMessage">
 
         <div class="container" *ngIf="isLoggedIn(); else noItems">
-            <div class='row' *ngFor="let item of items">
+            <div class='row' *ngFor="let item of items ">
                 <div class='col-6 g-4'>
                     <div class="card" [ngStyle]="{'width': '50rem', 'margin-left': '21rem'}">
                         <div class="card-body" [ngStyle]="{ 'font-size': '1.3rem' }">
@@ -14,7 +14,6 @@
                             <div class='d-flex justify-content-between align-items-center'>
                                 <strong>PUBLISH: <span class="text-danger">{{ getAbsoluteValue(item.year) }}</span> </strong>
                                 <button (click)="deleteBtn(item._id)" type='button'><fa-icon class="text-danger" [icon]="faTrashAlt"></fa-icon></button>
-                                <button type='button'><a routerLink="/thankYou"><fa-icon [ngStyle]="{ 'text-decoration': 'none' }" [icon]="faMoneyBill"></fa-icon></a></button>
                             </div>
                         </div>
                     </div>

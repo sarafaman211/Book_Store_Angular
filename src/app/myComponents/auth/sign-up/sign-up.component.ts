@@ -8,12 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
+  // pass the fields to hit
   name?: string
   email?: string
   password?: string
 
   constructor(private apiService: ApisService, private router: Router) { }
 
+  // Submitting the form
   onSubmit() {
 
     const user = {

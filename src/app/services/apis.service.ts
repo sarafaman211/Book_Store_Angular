@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http" 
 import { Observable } from 'rxjs';
-import { ApiResponse, Products } from '../interface/products.interface';
+import { ApiResponse, Products, Response } from '../interface/products.interface';
 import { map } from "rxjs/operators"
 import { Credentials, User, UserDetail } from '../interface/user.interface';
 import { Items, items } from '../interface/items.interface';
@@ -24,7 +24,7 @@ const headerOptions ={
 })
 export class ApisService {
   private api = "https://book-store-ay9n.onrender.com/api"
-
+ 
   constructor(private http: HttpClient) { }
 
   // Products and Items
@@ -32,6 +32,10 @@ export class ApisService {
     return this.http.get<ApiResponse>(`${this.api}/products/products`).pipe(
       map(response => response.products)
     )
+  }
+
+  getProductDetails(id?: string): Observable<Products>{
+    return this.http.get<Response>(`${ this.api }/products/getProduct/${ id }`).pipe(map(response => response.products))
   }
 
   getItems():Observable<Items[]>{

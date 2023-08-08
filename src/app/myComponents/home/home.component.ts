@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
         items: 4
       }
     },
-    nav: true,
+    // nav: true,
     autoplay: true, // Enable autoplay
     autoplayTimeout: 2000, // Set the interval (in milliseconds)
   };
@@ -53,10 +53,6 @@ export class HomeComponent implements OnInit {
 
   getInfo(link: string): void {
     openLink(link);
-  }
-
-  addItems(){
-    console.log("Items are here")
   }
 }
 

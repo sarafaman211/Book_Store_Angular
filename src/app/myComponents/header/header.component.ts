@@ -12,28 +12,34 @@ import { ProfileComponent } from '../auth/profile/profile.component';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  title: string = "Book_Store"
+  // values pass in the header component
+  public title: string = "Book_Store"
+  private isPopupOpen: boolean = false
+  public items?: Items[] = []
+  public cartItemsLength?: number = 0;
+
+  // fontawesome icons used in header component
   faSignInAlt = faSignInAlt;
   faSignOutAlt = faSignOutAlt
   faCartShopping = faCartPlus
   faUser = faUser
-  items?: Items[] = []
-  cartItemsLength?: number = 0;
-  private isPopupOpen:boolean = false
 
   constructor(private apiService: ApisService, private dialogRef: MatDialog) { }
 
-   ngOnInit(): void {
-      this.apiService.getItems().subscribe(response => {
-        this.items = response;
-        this.updateCartItemsLength(); // Update the cart length here
-      });
-  }
-  
-  updateCartItemsLength(): void {
-    this.cartItemsLength = this.items && this.items.length;
+  // calling the functions
+  ngOnInit(): void {
+    this.getItems()
   }
 
+  // get Items and update the length of the data in the cart section
+  getItems() {
+    return this.apiService.getItems().subscribe(response => {
+      this.items = response
+     this.cartItemsLength = response.length
+    })
+  }
+
+  // login and Logout functionality
   isLoggedIn(): boolean {
     const token = localStorage.getItem('token');
     return !!token;
@@ -45,18 +51,20 @@ export class HeaderComponent implements OnInit {
 
   // to open the dialog Profile component
   openProfilePopup(): void {
-    if (!this.isPopupOpen ){
-     this.apiService.getDetails().subscribe(userData => {
-       this.dialogRef.open(ProfileComponent, {
-         data: userData
-       })
-     })
-   }
-
-   this.dialogRef.afterAllClosed.subscribe((result: any) => {
-    this.isPopupOpen = false; 
-  });
-
-
+    if (!this.isPopupOpen) {
+      this.apiService.getDetails().subscribe(userData => {
+        // To open the dialog box
+        this.dialogRef.open(ProfileComponent, {
+          // passing the data so we can use and iterate the data in profile box
+          data: userData
+        })
+      })
     }
+
+    this.dialogRef.afterAllClosed.subscribe((result: any) => {
+      this.isPopupOpen = false;
+    });
+
+
+  }
 }

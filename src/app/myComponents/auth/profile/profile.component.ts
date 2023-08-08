@@ -8,6 +8,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 })
 export class ProfileComponent {
 
+// using angular material diolog box
     constructor( @Inject(MAT_DIALOG_DATA) public userData: any,private dialogRef: MatDialog ){}
     
     closeBtn(){

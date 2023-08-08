@@ -8,12 +8,15 @@ import { ApisService } from 'src/app/services/apis.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  email?: string
-  password?: string
+  // pass the fields to hit
+  public email?: string
+  public password?: string
 
   constructor(private apiService: ApisService, private router: Router) { }
 
+  // submitting the form
   onSubmit() {
+
     const user = {
       email: this.email,
       password: this.password
