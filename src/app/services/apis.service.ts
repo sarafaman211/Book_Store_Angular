@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http" 
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiResponse, Products, Response } from '../interface/products.interface';
-import { map } from "rxjs/operators"
+import { map, tap } from "rxjs/operators"
 import { Credentials, User, UserDetail } from '../interface/user.interface';
-import { Items, items } from '../interface/items.interface';
+import { Items, item, items } from '../interface/items.interface';
 
 const options = {
   headers: new HttpHeaders({
@@ -24,6 +24,7 @@ const headerOptions ={
 })
 export class ApisService {
   private api = "https://book-store-ay9n.onrender.com/api"
+  private cartItemsLengthSubject = new BehaviorSubject<number>(0);
  
   constructor(private http: HttpClient) { }
 
@@ -39,7 +40,15 @@ export class ApisService {
   }
 
   getItems():Observable<Items[]>{
-    return this.http.get<items>(`${ this.api }/items/getItems`, headerOptions).pipe(map(response => response.items))
+    return this.http.get<items>(`${ this.api }/items/getItems`, headerOptions).pipe(map(response => response.items),
+    tap(items => {
+      this.cartItemsLengthSubject.next(items.length);
+    }))
+  }
+
+// very Important url
+  getCartItemsLength(): Observable<number> {
+    return this.cartItemsLengthSubject.asObservable();
   }
 
   addProducts(products: Products): Observable<Products>{

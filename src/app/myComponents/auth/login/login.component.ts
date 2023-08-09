@@ -8,6 +8,7 @@ import { ApisService } from 'src/app/services/apis.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  // Hitting Forms with ngModel (template driven Form)
   // pass the fields to hit
   public email?: string
   public password?: string

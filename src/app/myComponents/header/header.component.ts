@@ -24,11 +24,14 @@ export class HeaderComponent implements OnInit {
   faCartShopping = faCartPlus
   faUser = faUser
 
-  constructor(private apiService: ApisService, private dialogRef: MatDialog) { }
+  constructor(private apiService: ApisService, private dialogRef: MatDialog) {}
 
   // calling the functions
   ngOnInit(): void {
     this.getItems()
+    this.apiService.getCartItemsLength().subscribe(length => {
+      this.cartItemsLength = length;
+    });
   }
 
   // get Items and update the length of the data in the cart section

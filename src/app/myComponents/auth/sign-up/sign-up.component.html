@@ -1,22 +1,44 @@
 <div class="form-container">
 
-    <form (ngSubmit)="onSubmit()">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
         <h3 class="heading">Welcome to <span class="text-primary">SignUp</span></h3>
         <div class="mb-3">
-            <input type="text" class="form-control box" id="name" aria-describedby="emailHelp" name="name" [(ngModel)]="name"
+            <input type="text" class="form-control box" id="name" aria-describedby="emailHelp" name="name" formControlName="name"
                 placeholder='Enter your name' />
         </div>
-        <div class="mb-3">
-            <input type="email" class="form-control box" id="email" aria-describedby="emailHelp" name="email"  [(ngModel)]="email"
-                placeholder='Enter your email' />
+        <div [ngStyle]="{'text-align': 'left', 'font-size': '1rem'}" class="form-text text-danger" *ngIf="name.errors?.['required'] && (name.touched || name.dirty)">
+            *Name is Required
+        </div>
+        <div [ngStyle]="{'text-align': 'left', 'font-size': '1rem'}" class="form-text text-danger" *ngIf="name.errors?.['minlength'] && (name.touched || name.dirty)">
+            *Name will be of 2 or more than 2 Charactors
+        </div>
+        <div [ngStyle]="{'text-align': 'left', 'font-size': '1rem'}" class="form-text text-danger" *ngIf="name.errors?.['pattern'] && (name.touched || name.dirty)">
+            *Name Starts with Alphabet
         </div>
         <div class="mb-3">
-            <input type="password" class="form-control box" id="password" name="password"  [(ngModel)]="password"
+            <input type="email" class="form-control box" id="email" aria-describedby="emailHelp" name="email" formControlName="email"
+                placeholder='Enter your email' />
+        </div>
+        <div [ngStyle]="{'text-align': 'left', 'font-size': '1rem'}" class="form-text text-danger" *ngIf="email.errors?.['required'] && (email.touched || email.dirty)">
+            *Email is required
+        </div>
+        <div [ngStyle]="{'text-align': 'left', 'font-size': '1rem'}" class="form-text text-danger" *ngIf="email.errors?.['email'] && (email.touched || email.dirty)">
+            *Custom Validation Failed
+        </div>
+        <div class="mb-3">
+            <input type="password" class="form-control box" id="password" name="password" formControlName="password"
                 placeholder='Enter your password' />
+        </div>
+        <div [ngStyle]="{'text-align': 'left', 'font-size': '1rem'}" class="form-text text-danger" *ngIf="password.errors?.['required'] && (password.touched || password.dirty)">
+            *Password Required
+        </div>
+        <div [ngStyle]="{'text-align': 'left', 'font-size': '1rem'}" class="form-text text-danger" *ngIf="password.errors?.['minlength'] && (password.touched || password.dirty)">
+            *Password should be of atleast 5 or more than 5 Charactors
         </div>
         <div [ngStyle]="{ 'font-size': '1.5rem', color: '#333' }" id="emailHelp" class="form-text">We'll never share
             your email with anyone else.</div>
-        <button [ngStyle]="{ 'width': '100%', 'padding': '1rem' }" type="submit" class="btn btn-primary">Submit</button>
+        <button [ngStyle]="{ 'width': '100%', 'padding': '1rem' }" type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid">Submit</button>
         <p>You have an account : <a routerLink="/login"
                 [ngStyle]="{ 'text-decoration': 'none', 'color': '#093145' }">Login</a></p>
     </form>
