@@ -3,6 +3,7 @@ import { faReadme } from '@fortawesome/free-brands-svg-icons';
 import { Products } from 'src/app/interface/products.interface';
 import { ApisService } from 'src/app/services/apis.service';
 import { Router } from '@angular/router';
+import { ToastrService } from "ngx-toastr"
 
 @Component({
   selector: 'app-collection',
@@ -47,7 +48,7 @@ export class CollectionComponent implements OnInit {
   };
 
 
-  constructor(private apiService: ApisService, private router: Router){}
+  constructor(private apiService: ApisService, private router: Router, private toast: ToastrService){}
 
   // Getting all the products
   ngOnInit(): void {
@@ -73,8 +74,9 @@ export class CollectionComponent implements OnInit {
   return this.apiService.addProducts(product).subscribe(response =>{
     if(response){
       this.router.navigate(["/cart"])
+      this.toast.success("Book Added")
     }else{
-      alert("Add to cart Fail")
+     this.toast.warning("Book Add Fail, Try Again")
     }
   })
  }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApisService } from 'src/app/services/apis.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,7 +16,7 @@ export class SignUpComponent {
   public errorMessage: string = ""
 
   // use form builder 
-  constructor(private apiService: ApisService, private router: Router, private formbuilder: FormBuilder) {
+  constructor(private apiService: ApisService, private router: Router, private formbuilder: FormBuilder, private toast: ToastrService ) {
     this.signUpForm = this.formbuilder.group({
       name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern(`[a-zA-Z].*`)])],
       email: ['', Validators.compose([Validators.required, Validators.email])],
@@ -46,9 +47,10 @@ export class SignUpComponent {
       this.apiService.register(user).subscribe(authToken => {
         if (authToken) {
           this.router.navigate(['/home']);
+          this.toast.success("SignUp Success, Welcome to Book-Store")
           this.errorMessage = ""
         } else {
-          console.log('Login failed');
+          this.toast.warning("SignUp Fail, Try Again")
         }
       })
     } else {

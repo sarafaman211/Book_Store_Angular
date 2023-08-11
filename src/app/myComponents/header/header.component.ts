@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { faSignInAlt, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faSignInAlt, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons"
 import { Items } from 'src/app/interface/items.interface';
 import { ApisService } from 'src/app/services/apis.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileComponent } from '../auth/profile/profile.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -23,8 +24,9 @@ export class HeaderComponent implements OnInit {
   faSignOutAlt = faSignOutAlt
   faCartShopping = faCartPlus
   faUser = faUser
+  faGlass =faSearch
 
-  constructor(private apiService: ApisService, private dialogRef: MatDialog) {}
+  constructor(private apiService: ApisService, private dialogRef: MatDialog, private toast: ToastrService) {}
 
   // calling the functions
   ngOnInit(): void {
@@ -50,6 +52,7 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     localStorage.removeItem('token');
+    this.toast.success("Logged Out Success")
   }
 
   // to open the dialog Profile component

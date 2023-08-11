@@ -25,6 +25,9 @@
 
       </ul>
       <div class="d-flex">
+        <a class="btn fs-1" *ngIf="isLoggedIn()"  routerLink="/searchProducts">
+          <fa-icon [icon]="faGlass"></fa-icon>
+        </a>
         <a class="btn fs-1" *ngIf="isLoggedIn()"  routerLink="/cart">
           <fa-icon [icon]="faCartShopping"></fa-icon>{{cartItemsLength}}
         </a>

@@ -8,6 +8,7 @@ import { LoginComponent } from './myComponents/auth/login/login.component';
 import { SignUpComponent } from './myComponents/auth/sign-up/sign-up.component';
 import { CartComponent } from './myComponents/cart/cart.component';
 import { ProductDetailsComponent } from './myComponents/product-details/product-details.component';
+import { SerachComponent } from './myComponents/serach/serach.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'signUp', component: SignUpComponent },
   { path: 'cart', component: CartComponent },
   { path: 'product-details/:id', component: ProductDetailsComponent },
+  { path: 'searchProducts', component: SerachComponent },
 ];
 
 @NgModule({

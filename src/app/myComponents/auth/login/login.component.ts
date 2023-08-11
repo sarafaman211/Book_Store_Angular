@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApisService } from 'src/app/services/apis.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent {
   public email?: string
   public password?: string
 
-  constructor(private apiService: ApisService, private router: Router) { }
+  constructor(private apiService: ApisService, private router: Router, private toast: ToastrService ) { }
 
   // submitting the form
   onSubmit() {
@@ -24,7 +25,7 @@ export class LoginComponent {
     }
 
     if (!this.email || !this.password) {
-      alert("Please fill in the credentials");
+      this.toast.warning("Please fill in the credentials")
       return;
     }
     if (this.password && this.password?.length < 4) {
@@ -34,8 +35,9 @@ export class LoginComponent {
         if (authToken) {
           // console.log('Authentication Token:', authToken);
           this.router.navigate(["/home"])
+          this.toast.success("Login Success")
         } else {
-          console.log('Login failed');
+          this.toast.warning("Please Fill the correct credentials")
         }
       })
     }

@@ -1,10 +1,11 @@
-import { NgModule, ChangeDetectionStrategy } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from "@angular/common/http"
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule} from "@angular/material/dialog"
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { CarouselComponent } from './myComponents/carousel/carousel.component';
 import { ProfileComponent } from './myComponents/auth/profile/profile.component';
 import { CartComponent } from './myComponents/cart/cart.component';
 import { ProductDetailsComponent } from './myComponents/product-details/product-details.component';
+import { SerachComponent } from './myComponents/serach/serach.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { ProductDetailsComponent } from './myComponents/product-details/product-
     CarouselComponent,
     ProfileComponent,
     CartComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    SerachComponent
   ],
   imports: [
     BrowserModule,
@@ -47,9 +50,15 @@ import { ProductDetailsComponent } from './myComponents/product-details/product-
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      progressBar: true,
+      preventDuplicates: true,
+      progressAnimation: 'increasing'
+    })
     ],
-  providers: [{ provide: ChangeDetectionStrategy,useValue: ChangeDetectionStrategy.OnPush  }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

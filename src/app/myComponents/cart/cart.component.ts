@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Items } from 'src/app/interface/items.interface';
 import { ApisService } from 'src/app/services/apis.service';
+import { ToastrService } from "ngx-toastr"
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +17,7 @@ export class CartComponent implements OnInit {
   // fontawesome icons 
   faTrashAlt = faTrashAlt
 
-  constructor(private apiService: ApisService, private cdr: ChangeDetectorRef) {}
+  constructor(private apiService: ApisService, private cdr: ChangeDetectorRef, private toast: ToastrService) {}
 
   // get Items and add some functions like add the amount and display it
   ngOnInit():void{
@@ -46,6 +47,7 @@ export class CartComponent implements OnInit {
   deleteBtn(id?:string){
     return this.apiService.deleteProducts(id).subscribe(response => {
         this.items = this.items.filter(data => data._id !== id)
+        this.toast.success("Book Removed")
         this.updateCartItemsLength()
       })
   

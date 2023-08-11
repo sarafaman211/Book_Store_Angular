@@ -2,34 +2,34 @@
 
     <div class='collection'>
         <h1 class='heading text-center text-danger'>Collections</h1>
-        <owl-carousel-o [options]="customOptions">
+            <owl-carousel-o [options]="customOptions">
+                <ng-container *ngFor="let product of products">
+                    <ng-template carouselSlide id="product.id">
+                        <!-- <img [src]="product.imageLink" [alt]="slide.name" [title]="slide.name"> -->
+                        <div class="card mx-2"
+                            [ngStyle]="{ 'backgorund-color': 'transparent', 'border': 'none' }">
+                            <img [src]="!product.imageLink ? product.imageLink : 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'"
+                                class="card-img-top" alt="books" />
+                            <div class="card-body my-3">
+                                <h3 class="card-title" [ngStyle]="{ 'font-size': '1.070rem' }">TITLE: <span
+                                        class="text-primary">{{ product.title }}</span></h3><br />
+                                <h4 class="card-title" [ngStyle]="{ 'font-size': '1rem' }">AUTHOR: <span
+                                        class="text-danger">{{ product.author }}</span></h4><br />
+                                <div class='d-flex justify-content-between align-items-center '>
+                                    <button (click)="getInfo(product.link)" class='btn btn-primary'><fa-icon
+                                            [icon]="faReadme"></fa-icon></button>
+                                    <a [routerLink]="'/product-details/' + product._id" class='btn btn-primary'>View
+                                        Product</a>
+                                    <button (click)="addItems(product)" type="button" class='btn btn-primary '>Add to
+                                        Cart</button>
+                                </div>
 
-            <ng-container *ngFor="let product of products">
-                <ng-template carouselSlide id="product.id">
-                    <!-- <img [src]="product.imageLink" [alt]="slide.name" [title]="slide.name"> -->
-                    <div class="card align-items-center mx-2"
-                        [ngStyle]="{ 'backgorund-color': 'transparent', 'border': 'none' }">
-                        <img [src]="!product.imageLink ? product.imageLink : 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'"
-                            class="card-img-top" alt="books" [ngStyle]="{ 'width': '15rem', 'padding-top': '10'}" />
-                        <div class="card-body my-3">
-                            <h3 class="card-title" [ngStyle]="{ 'font-size': '20' }">TITLE: <span
-                                    class="text-primary">{{ product.title }}</span></h3><br />
-                            <h4 class="card-title" [ngStyle]="{ 'font-size': '15' }">AUTHOR: <span
-                                    class="text-danger">{{ product.author }}</span></h4><br />
-                            <div class='d-flex justify-content-between align-items-center'>
-                                <button (click)="getInfo(product.link)" class='btn btn-primary'><fa-icon
-                                        [icon]="faReadme"></fa-icon></button>
-                                <a [routerLink]="'/product-details/' + product._id" class='btn btn-primary'>View Product</a>
-                                <button (click)="addItems(product)" type="button" class='btn btn-primary'>Add to
-                                    Cart</button>
                             </div>
-
                         </div>
-                    </div>
-                </ng-template>
-            </ng-container>
+                    </ng-template>
+                </ng-container>
 
-        </owl-carousel-o>
+            </owl-carousel-o>
 
         <div class="container py-4">
             <h2 class="heding text-secondary text-center">Feature Books</h2>
@@ -47,34 +47,32 @@
                     [ngStyle]="{ 'background-color': 'transparent' , 'border': 'none' }">ITALIAN</button>
             </div>
 
-            <div class="container">
+            <div class=" row container" [ngStyle]="{'margin-top': '2rem'}">
 
-                <div class='row' *ngFor="let product of filterProducts">
-                    <div className='col-6 g-4'>
-                        <div class="card " [ngStyle]="{'width': '25rem'}">
+                <ng-container class='row' *ngFor="let product of filterProducts">
+                    <div class='col-md-3 g-4'>
+                        <div class="card">
                             <img [src]="!product.imageLink ? product.imageLink : 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'"
-                                class="card-img-top" alt="books" [ngStyle]="{ 'width': '100%', 'padding-top': '10'}" />
+                                class="card-img-top" alt="books" />
                             <div class="card-body my-3">
-                                <h3 class="card-title" [ngStyle]="{ 'font-size': '20' }">TITLE: <span
+                                <h3 class="card-title" [ngStyle]="{ 'font-size': '1.070rem' }">TITLE: <span
                                         class="text-primary">{{
                                         product.title }}</span></h3><br />
-                                <h4 class="card-title" [ngStyle]="{ 'font-size': '15' }">AUTHOR: <span
+                                <h4 class="card-title" [ngStyle]="{ 'font-size': '1rem' }">AUTHOR: <span
                                         class="text-danger">{{
                                         product.author }}</span></h4><br />
                                 <div class='d-flex justify-content-between align-items-center'>
                                     <button (click)="getInfo(product.link)" class='btn btn-primary'><fa-icon
                                             [icon]="faReadme"></fa-icon></button>
-                                            <a [routerLink]="'/product-details/' + product._id" class='btn btn-primary'>View Product</a>
+                                    <a [routerLink]="'/product-details/' + product._id" class='btn btn-primary'>View
+                                        Product</a>
                                     <button (click)="addItems(product)" type="button" class='btn btn-primary'>Add to
                                         Cart</button>
                                 </div>
-                                <!-- {{product.imageLink}} -->
-
                             </div>
                         </div>
-
                     </div>
-                </div>
+                </ng-container>
             </div>
         </div>
     </div>

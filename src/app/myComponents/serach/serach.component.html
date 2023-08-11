@@ -1,0 +1,41 @@
+<div
+  [ngStyle]="{ 'margin-top':'7.5rem','padding': '1rem', 'height': '100%', 'background-color': '#1e3b70', 'padding-bottom': '1rem' }">
+
+  <h1 class='heading text-center text-danger'>Search Here !!!</h1>
+
+  <div class='container' [ngStyle]="{'margin-left': '8rem'}">
+    <div class='d-flex '>
+      <input
+        [ngStyle]="{ 'width': '100%', 'color': '#333', 'font-size': '1.5rem', 'border-radius': '10px', 'border': '2px solid black', 'padding': '1rem' }"
+        type="text" [(ngModel)]="searchTerm" (input)="filterProducts()" placeholder="Search here...." />
+    </div>
+    <div class=" row container" [ngStyle]="{'margin-top': '2rem'}">
+      <ng-container *ngFor="let value of filteredProducts">
+        <!-- {{ value.title }} -->
+
+        <div class='col-md-3 g-4'>
+          <div class="card">
+            <img
+              [src]="!value.imageLink ? value.imageLink : 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'"
+              class="card-img-top" alt="books" />
+            <div class="card-body my-3">
+              <h3 class="card-title" [ngStyle]="{ 'font-size': '1.070rem' }">TITLE: <span class="text-primary">{{
+                  value.title }}</span></h3><br />
+              <h4 class="card-title" [ngStyle]="{ 'font-size': '1rem' }">AUTHOR: <span class="text-danger">{{
+                  value.author }}</span></h4><br />
+              <div class='d-flex justify-content-between aling-items-center'
+                [ngStyle]="{ 'font-size': '1.1rem', 'padding-bottom': '5px' }">
+                <strong class='text-primary'>Year: <span class="text-primary">{{ value.year }}</span> </strong>
+                <strong class='text-danger'>Amount: <span class="text-primary"> &#8377;{{ value.amount }}</span>
+                </strong>
+              </div>
+              <a [routerLink]="'/product-details/' + value._id" [ngStyle]="{'width': '100%'}"
+                class='btn btn-primary'>View Product</a>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+</div>

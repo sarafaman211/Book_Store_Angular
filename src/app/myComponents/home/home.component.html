@@ -65,11 +65,11 @@
         <ng-container *ngFor="let product of products">
           <ng-template carouselSlide id="product.id">
             <!-- <img [src]="product.imageLink" [alt]="slide.name" [title]="slide.name"> -->
-            <div class="card align-items-center mx-2" [ngStyle]="{ 'backgorund-color': 'transparent', 'border': 'none' }" >
-                <img [src]="!product.imageLink ? product.imageLink : 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'" class="card-img-top" alt="books" [ngStyle]="{ 'width': '15rem', 'padding-top': '10'}" />
+            <div class="card mx-2" [ngStyle]="{ 'backgorund-color': 'transparent', 'border': 'none' }" >
+                <img [src]="!product.imageLink ? product.imageLink : 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'" class="card-img-top" alt="books" />
                 <div class="card-body my-3">
-                    <h3 class="card-title" [ngStyle]="{ 'font-size': '20' }">TITLE: <span class="text-primary">{{ product.title }}</span></h3><br />
-                    <h4 class="card-title" [ngStyle]="{ 'font-size': '15' }">AUTHOR: <span class="text-danger">{{ product.author }}</span></h4><br />
+                    <h3 class="card-title" [ngStyle]="{ 'font-size': '1.2rem' }">TITLE: <span class="text-primary">{{ product.title }}</span></h3><br />
+                    <h4 class="card-title" [ngStyle]="{ 'font-size': '1rem' }">AUTHOR: <span class="text-danger">{{ product.author }}</span></h4><br />
                     <div class='d-flex justify-content-between align-items-center'>
                     <button (click)="getInfo(product.link)"  class='btn btn-primary' ><fa-icon [icon]="faReadme"></fa-icon></button>
                     <a [routerLink]="'/product-details/' + product._id" class='btn btn-primary'>View Product</a>
